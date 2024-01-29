@@ -9,6 +9,7 @@ on:
 jobs:
   build-and-push-release-image:
     runs-on: ubuntu-latest
+    environment: memos
     permissions:
       contents: read
       packages: write
