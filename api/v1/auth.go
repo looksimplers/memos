@@ -186,12 +186,12 @@ func (s *APIV1Service) SignInSSO(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, "Incorrect login credentials, please try again")
 	}
 	if user == nil {
-		allowSignUpSetting, err := s.Store.GetSystemSetting(ctx, &store.FindSystemSetting{
-			Name: SystemSettingAllowSignUpName.String(),
-		})
-		if err != nil {
-			return echo.NewHTTPError(http.StatusInternalServerError, "Failed to find system setting").SetInternal(err)
-		}
+		// allowSignUpSetting, err := s.Store.GetSystemSetting(ctx, &store.FindSystemSetting{
+		// 	Name: SystemSettingAllowSignUpName.String(),
+		// })
+		// if err != nil {
+		// 	return echo.NewHTTPError(http.StatusInternalServerError, "Failed to find system setting").SetInternal(err)
+		// }
 
 		// allowSignUpSettingValue := true
 		// if allowSignUpSetting != nil {
