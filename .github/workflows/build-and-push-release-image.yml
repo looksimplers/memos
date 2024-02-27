@@ -8,6 +8,7 @@ on:
 
 jobs:
   build-and-push-release-image:
+    environment: memos
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -27,8 +28,8 @@ jobs:
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: neosmemo
-          password: ${{ secrets.DOCKER_NEOSMEMO_TOKEN }}
+          username: likesimpler
+          password: ${{ secrets.DOCKER_MEMOS }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -49,8 +50,8 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            neosmemo/memos
-            ghcr.io/usememos/memos
+            likesimpler/memos
+            ghcr.io/looksimplers/memos
           tags: |
             type=semver,pattern={{version}},value=${{ env.VERSION }}
             type=semver,pattern={{major}}.{{minor}},value=${{ env.VERSION }}
