@@ -176,13 +176,13 @@ func (s *APIV1Service) SignInSSO(c echo.Context) error {
 		return echo.NewHTTPError(http.StatusInternalServerError, "Incorrect login credentials, please try again")
 	}
 	if user == nil {
-		workspaceGeneralSetting, err := s.Store.GetWorkspaceGeneralSetting(ctx)
-		if err != nil {
-			return echo.NewHTTPError(http.StatusInternalServerError, "Failed to find system setting").SetInternal(err)
-		}
-		if workspaceGeneralSetting.DisallowSignup {
-			return echo.NewHTTPError(http.StatusUnauthorized, "signup is disabled").SetInternal(err)
-		}
+		// workspaceGeneralSetting, err := s.Store.GetWorkspaceGeneralSetting(ctx)
+		// if err != nil {
+		// 	return echo.NewHTTPError(http.StatusInternalServerError, "Failed to find system setting").SetInternal(err)
+		// }
+		// if workspaceGeneralSetting.DisallowSignup {
+		// 	return echo.NewHTTPError(http.StatusUnauthorized, "signup is disabled").SetInternal(err)
+		// }
 
 		userCreate := &store.User{
 			Username: userInfo.Identifier,
