@@ -3,6 +3,7 @@ import { memoServiceClient } from "@/grpcweb";
 import { useTagStore } from "@/store/module";
 import { useMemoStore } from "@/store/v1";
 import { User } from "@/types/proto/api/v2/user_service";
+import { useTranslate } from "@/utils/i18n";
 import Icon from "./Icon";
 
 interface Props {
@@ -11,12 +12,13 @@ interface Props {
 
 const PersonalStatistics = (props: Props) => {
   const { user } = props;
+  const t = useTranslate();
   const tagStore = useTagStore();
   const memoStore = useMemoStore();
   const [memoAmount, setMemoAmount] = useState(0);
   const [isRequesting, setIsRequesting] = useState(false);
   const days = Math.ceil((Date.now() - user.createTime!.getTime()) / 86400000);
-  const memos = Object.values(memoStore.getState().memoMapById);
+  const memos = Object.values(memoStore.getState().memoMapByName);
   const tags = tagStore.state.tags.length;
 
   useEffect(() => {
@@ -37,7 +39,7 @@ const PersonalStatistics = (props: Props) => {
 
   return (
     <div className="w-full border mt-2 py-2 px-3 rounded-md space-y-0.5 text-gray-500 dark:text-gray-400 bg-zinc-50 dark:bg-zinc-900 dark:border-zinc-800">
-      <p className="text-sm font-medium">Statistics</p>
+      <p className="text-sm font-medium dark:text-gray-500">{t("common.statistics")}</p>
       <div className="w-full flex justify-between items-center">
         <div className="w-full flex justify-start items-center">
           <Icon.CalendarDays className="w-4 h-auto mr-1" />
